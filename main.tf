@@ -16,12 +16,13 @@ provider "aws" {
     profile = "test-tf-ecr-dk-samplenodejs"
 }
 
-locals {
-    aws_ecr_url = "${data.aws_caller_identity.current.account_id}.dkr.us-east-1.amazonaws.com"
-}
-
+data "aws_region" "current_region" {}
 data "aws_caller_identity" "current" {}
 data "aws_ecr_authorization_token" "token" {}
+
+locals {
+    aws_ecr_url = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${data.aws_region.current_region.name}.amazonaws.com"
+}
 
 provider "docker" {
   registry_auth {
@@ -35,8 +36,6 @@ resource "aws_ecr_repository" "test-tf-ecr-dk-samplenodejs" {
   name = "test-tf-ecr-dk-samplenodejs"
 }
 
-resource "docker_registry_image" "sample-nodejs" {
-  name = "${aws_ecr_repository.test-tf-ecr-dk-samplenodejs.repository_url}:latest"
-  insecure_skip_verify = true
-  keep_remotely = true
+resource "docker_registry_image" "test-tf-ecr-dk-samplenodejs" {
+  name = "${local.aws_ecr_url}/${aws_ecr_repository.test-tf-ecr-dk-samplenodejs.name}:latest"
 }
