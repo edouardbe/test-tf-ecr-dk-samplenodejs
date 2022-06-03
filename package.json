@@ -1,0 +1,17 @@
+{
+  "name": "sample_nodejs_app",
+  "version": "1.0.0",
+  "description": "Sample Node.js application with Hello World",
+  "author": "Me>",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "start.dev": "nodemon"
+  },
+  "dependencies": {
+    "express": "^4.16.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
