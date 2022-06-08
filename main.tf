@@ -38,4 +38,6 @@ resource "aws_ecr_repository" "test-tf-ecr-dk-samplenodejs" {
 
 resource "docker_registry_image" "test-tf-ecr-dk-samplenodejs" {
   name = "${local.aws_ecr_url}/${aws_ecr_repository.test-tf-ecr-dk-samplenodejs.name}:latest"
+  build {
+    context = "${path.cwd}"
 }
