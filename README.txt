@@ -5,7 +5,7 @@ npm install
 npm start
 
 # test on your browser, you should get hello world
-http://localhost:8080
+http://localhost:80
 
 # stop the sample application
 Ctrl-C
@@ -14,13 +14,13 @@ Ctrl-C
 docker build . -t sample-nodejs-app:latest
 
 # run a docker container based on the image
-docker run -p 8080:8080 sample-nodejs-app:latest        
+docker run -p 80:80 sample-nodejs-app:latest        
 > sample_nodejs_app@1.0.0 start
 > node server.js
-Running on http://0.0.0.0:8080
+Running on http://0.0.0.0:80
 
 # test on your browser, you should get hello world
-http://localhost:8080
+http://localhost:80
 
 # stop the docker container
 Ctrl-C
