@@ -27,6 +27,10 @@ Ctrl-C
 
 # AWS IAM needed permissions. Add these permissions to the user you will use
 - AmazonEC2ContainerRegistryFullAccess
+- AmazonECS_FullAccess
+- IAMFullAccess
+- ElasticLoadBalancingFullAccess
+- AmazonS3FullAccess
 
 # terraform
 # either change the aws profile = "test-tf-ecr-dk-samplenodejs" to your own profile name, or create the credentials you need in ~/.aws/credentials
@@ -43,3 +47,9 @@ terraform plan
 # apply
 terraform apply
 yes
+
+# you will get the loadbalancer address as output, something like
+loadbalancer-address = "test-lb-753262703.us-east-1.elb.amazonaws.com"
+
+# test on your browser, you should get hello world
+http://test-lb-753262703.us-east-1.elb.amazonaws.com/
